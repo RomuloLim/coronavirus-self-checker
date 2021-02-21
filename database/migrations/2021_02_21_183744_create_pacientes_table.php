@@ -13,8 +13,12 @@ class CreatePacientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pacientes', function (Blueprint $table) {
+        Schema::create('pacients', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->date('year');
+            $table->string('cpf', 15);
+            $table->string('wpp', 15);
             $table->timestamps();
         });
     }
