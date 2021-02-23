@@ -1,3 +1,8 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Exibindo paciente')
+
+@section('content')
 <h1>Detalhes do paciente</h1>
 <hr>
 @if (session('message'))
@@ -20,3 +25,5 @@
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Deletar paciente</button>
 </form>
+
+@endsection

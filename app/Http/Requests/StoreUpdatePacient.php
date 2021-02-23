@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUpdatePacient extends FormRequest
 {
@@ -23,11 +24,24 @@ class StoreUpdatePacient extends FormRequest
      */
     public function rules()
     {
-        return [
+        $id = $this->segment(2);
+
+        $rules = [
             'name' => ['required', 'min:10', 'max:250'],
             'year' => ['required'],
-            'cpf' => ['required', 'min:14', 'max:14'],
+            'cpf' => [
+                'required',
+                'min:14',
+                'max:14',
+                Rule::unique('pacients')->ignore($id),
+            ],
             'wpp' => ['required', 'min:15', 'max:15'],
+            'image' => ['required', 'image'],
         ];
+
+        if($this->method() == 'PUT'){
+            $rules['image'] = ['nullable', 'image'];
+        }
+        return $rules;
     }
 }

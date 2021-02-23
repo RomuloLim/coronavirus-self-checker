@@ -17,8 +17,9 @@ class CreatePacientesTable extends Migration
             $table->id();
             $table->string('name');
             $table->date('year');
-            $table->string('cpf', 15);
+            $table->string('cpf', 15)->unique();
             $table->string('wpp', 15);
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePacientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pacientes');
+        Schema::dropIfExists('pacients');
     }
 }

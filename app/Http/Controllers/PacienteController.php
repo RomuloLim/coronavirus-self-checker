@@ -6,12 +6,13 @@ use App\Http\Requests\StoreUpdatePacient;
 use App\Models\Pacient;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PacienteController extends Controller
 {
     public function index(){
 
-        $pacients = Pacient::get();
+        $pacients = Pacient::latest()->paginate(5);
 
         return view('admin.pacients.index', compact('pacients'));
     }
@@ -21,11 +22,20 @@ class PacienteController extends Controller
     }
 
     public function store(StoreUpdatePacient $request){
-        //calcular idade
+        $data = $request->all();
+        if($request->image->isValid()){
 
-        $pacient = Pacient::create($request->all());
+            $fileName = $request->cpf.'.'.$request->image->getClientOriginalExtension();
 
-        return redirect()->route('pacients.index');
+            $img = $request->image->storeAs('pacients', $fileName);
+            $data['image'] = $img;
+        }
+
+        $pacient = Pacient::create($data);
+
+        return redirect()
+        ->route('pacients.index')
+        ->with('message', 'Paciente criado com sucesso');
     }
 
     public function show($id){
@@ -59,13 +69,30 @@ class PacienteController extends Controller
 
     public function update(StoreUpdatePacient $request, $id){
         if(!$pacient = Pacient::find($id)){
-            return redirect()->route('pacients.index');
+            return redirect()->back();
         }
 
-        $pacient->update($request->all());
+        $data = $request->all();
+        if($request->image && $request->image->isValid()){
+            if(Storage::exists($pacient->image))
+                 Storage::delete($pacient->image);
+            $img = $request->image->store('pacients');
+            $data['image'] = $img;
+        }
+
+        $pacient->update($data);
 
         return redirect()
         ->route('pacients.index')
         ->with('message', 'Paciente editado com sucesso!');
+    }
+
+    public function search(Request $request){
+        $filters = $request->except('_token');
+        $pacients = Pacient::where('name', 'LIKE', "%{$request->search}%")
+                            ->orWhere('cpf', 'LIKE', "%{$request->search}%")
+                            ->paginate(5);
+
+        return view('admin.pacients.index', compact('pacients', 'filters'));
     }
 }
