@@ -51,7 +51,7 @@
                 Coriza
             </label>
             <label class="list-group-item">
-                <input class="form-check-input me-1" name="nariz-ent" type="checkbox" value="1">
+                <input class="form-check-input me-1" name="nariz_ent" type="checkbox" value="1">
                 Nariz Entupido
             </label>
             <label class="list-group-item">
@@ -65,39 +65,39 @@
             Tosse
         </label>
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="dor-cab" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="dor_cab" type="checkbox" value="1">
             Dor de cabeça
         </label>
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="dor-corpo" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="dor_corpo" type="checkbox" value="1">
             Dores no corpo
         </label>
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="mal-estar" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="mal_estar" type="checkbox" value="1">
             Mal estar geral
         </label>
         </div>
         <div class="list-group col-3">
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="dor-garganta" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="dor_garganta" type="checkbox" value="1">
             Dor de garganta
         </label>
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="dif-respirar" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="dif_respirar" type="checkbox" value="1">
             Dificuldade de respirar
         </label>
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="falta-paladar" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="falta_paladar" type="checkbox" value="1">
             Falta de paladar
         </label>
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="falta-olfato" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="falta_olfato" type="checkbox" value="1">
             Falta de olfato
         </label>
         </div>
         <div class="list-group col-3">
         <label class="list-group-item">
-            <input class="form-check-input me-1" name="dif-loc" type="checkbox" value="1">
+            <input class="form-check-input me-1" name="dif_loc" type="checkbox" value="1">
             Dificuldade de locomoção
         </label>
         <label class="list-group-item">

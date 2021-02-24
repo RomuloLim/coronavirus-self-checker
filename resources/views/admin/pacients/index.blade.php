@@ -4,7 +4,7 @@
 
 @section('content')
     @if (session('message'))
-        <div>{{ session('message') }}</div>
+        <div class="alert alert-success mt-3">{{ session('message') }}</div>
     @endif
 
     <form class="form-group" action="{{ route('pacients.search') }}" method="post">

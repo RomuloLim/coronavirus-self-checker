@@ -25,9 +25,7 @@ class PacienteController extends Controller
         $data = $request->all();
         if($request->image->isValid()){
 
-            $fileName = $request->cpf.'.'.$request->image->getClientOriginalExtension();
-
-            $img = $request->image->storeAs('pacients', $fileName);
+            $img = $request->image->store('pacients');
             $data['image'] = $img;
         }
 
@@ -51,6 +49,9 @@ class PacienteController extends Controller
         if(!$pacient = Pacient::find($id)){
             return redirect()->route('pacients.index');
         }
+
+        if(Storage::exists($pacient->image))
+            Storage::delete($pacient->image);
 
         $pacient->delete();
 
