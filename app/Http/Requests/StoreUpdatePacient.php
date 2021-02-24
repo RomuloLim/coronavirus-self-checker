@@ -35,7 +35,7 @@ class StoreUpdatePacient extends FormRequest
                 'max:14',
                 Rule::unique('pacients')->ignore($id),
             ],
-            'wpp' => ['required', 'min:15', 'max:15'],
+            'wpp' => ['required', 'min:14', 'max:15'],
             'image' => ['required', 'image'],
         ];
 
@@ -43,5 +43,23 @@ class StoreUpdatePacient extends FormRequest
             $rules['image'] = ['nullable', 'image'];
         }
         return $rules;
+    }
+
+    public function messages()
+    {
+        return[
+            'name.required' => 'Informe o nome do paciente',
+            'name.min' => 'Preencha seu nome completo',
+            'name.max' => 'Preencha apenas seu nome no campo correspondente',
+            'year.required' => 'Informe a data de nascimento do paciente',
+            'cpf.required' => 'Informe o CPF do paciente',
+            'cpf.min' => 'CPF inválido',
+            'cpf.max' => 'CPF inválido',
+            'wpp.required' => 'Informe o WhatsApp do paciente',
+            'wpp.min' => 'Número inválido',
+            'wpp.max' => 'Número inválido',
+            'image.required' => 'Informe uma imagem para o paciente',
+            'image.image' => 'Faça upload apenas de imagens'
+        ];
     }
 }

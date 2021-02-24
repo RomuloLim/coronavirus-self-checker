@@ -18,7 +18,7 @@
 </div>
 
 <div class="col-md-6">
-    <label for="name" class="form-label">Foto</label>
+    <label for="image" class="form-label">Foto</label>
     <input class="form-control" type="file" name="image" id="image">
 </div>
 

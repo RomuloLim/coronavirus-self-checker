@@ -32,11 +32,6 @@
         </div>
         </div>
 </div>
-<form action="{{ route('pacients.destroy', $pacient->id )}}" method="POST">
-    @csrf
-    <input type="hidden" name="_method" value="DELETE">
-    <button type="submit" class=" row btn btn-danger">Deletar paciente</button>
-</form>
 <hr class="mt-4">
 <h1>Sintomas</h1>
 
