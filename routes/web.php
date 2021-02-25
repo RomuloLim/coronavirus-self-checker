@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    DiagnosticController,
     PacienteController
 };
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,9 @@ Route::get('/pacients/edit/{id}', [PacienteController::class, 'edit'])->name('pa
 Route::put('/pacients/{id}', [PacienteController::class, 'update'])->name('pacients.update');
 Route::get('/pacients/{id}', [PacienteController::class, 'show'])->name('pacients.show');
 Route::delete('/pacients/{id}', [PacienteController::class, 'destroy'])->name('pacients.destroy');
+
+Route::post('/diagnostic/{id}', [DiagnosticController::class, 'store'])->name('diagnostic.store');
+Route::get('/diagnostic/{id}', [PacienteController::class, 'createDiagnostic'])->name('diagnostic.create');
 
 
 Route::get('/', function () {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePacient;
 use App\Models\Pacient;
+use App\Models\Diagnostic;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +43,8 @@ class PacienteController extends Controller
             return redirect()->route('pacients.index');
         }
 
-        return view('admin.pacients.show', compact('pacient'));
+        $diagnostic = Diagnostic::where('pacient_id', $id)->get()->first();
+        return view('admin.pacients.show', compact('pacient', 'diagnostic'));
     }
 
     public function destroy($id){
@@ -95,5 +97,12 @@ class PacienteController extends Controller
                             ->paginate(5);
 
         return view('admin.pacients.index', compact('pacients', 'filters'));
+    }
+
+    public function createDiagnostic($id){
+        if(!$pacient = Pacient::find($id)){
+            return redirect()->back();
+        }
+        return view('admin.pacients.diagnostic', compact('pacient'));
     }
 }

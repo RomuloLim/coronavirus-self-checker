@@ -20,6 +20,7 @@ class CreatePacientesTable extends Migration
             $table->string('cpf', 15)->unique();
             $table->string('wpp', 15);
             $table->string('image');
+            $table->string('diagnostic')->nullable()->default('---');
             $table->timestamps();
         });
     }

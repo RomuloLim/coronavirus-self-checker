@@ -27,9 +27,8 @@
               <th scope="col">Foto</th>
               <th scope="col">Nome</th>
               <th scope="col">Idade</th>
-              <th>Ver</th>
-              <th>Editar</th>
-              <th>Deletar</th>
+              <th>Diagnóstico</th>
+              <th colspan="4">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -43,13 +42,26 @@
                     @php $date = new DateTime($pacient->year); $onlyAge = $date->diff(new DateTime(date('Y-m-d'))); @endphp
                     {{ $onlyAge->format('%Y') }} anos
                 </td>
-                <td><a class="btn btn-primary" href="{{ route('pacients.show', $pacient->id) }}"><i class="fas fa-eye"></i></a></td>
-                <td><a class="btn btn-warning" href="{{ route('pacients.edit', $pacient->id) }}"><i class="fas fa-pen"></i></a></td>
+                @if ($pacient->diagnostic == "---")
+                    <td class="col-3"><div class="col-12 text-center">{{ $pacient->diagnostic }}</div></td>
+                @else
+                    <td class="col-3"><div class="col-12 text-center {{ $pacient->diagnostic == 'SINTOMAS INSUFICIENTES' ? 'alert alert-success' : ($pacient->diagnostic == 'POTENCIAL INFECTADO' ? 'alert alert-warning' : 'alert alert-danger') }}">{{ $pacient->diagnostic }}</div></td>
+                @endif
                 <td>
-                    <form action="{{ route('pacients.destroy', $pacient->id )}}" method="POST">
+                <a class="btn btn-primary" href="{{ route('pacients.show', $pacient->id) }}"><i class="fas fa-eye"></i></a>
+                @if ($pacient->diagnostic == "---")
+                <a class="btn btn-success" disabled href="{{ route('diagnostic.create', $pacient->id) }}"><i class="fas fa-book"></i></a>
+                @else
+                <button class="btn btn-success" disabled><i class="fas fa-book"></i></button>
+
+                @endif
+
+                <a class="btn btn-warning" href="{{ route('pacients.edit', $pacient->id) }}"><i class="fas fa-pen"></i></a>
+
+                    <form action="{{ route('pacients.destroy', $pacient->id )}}" style="display: inline" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit" class=" row btn btn-danger"><i class="fas fa-trash"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                     </form>
                 </td>
             </tr>

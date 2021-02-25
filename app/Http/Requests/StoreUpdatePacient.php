@@ -55,6 +55,7 @@ class StoreUpdatePacient extends FormRequest
             'cpf.required' => 'Informe o CPF do paciente',
             'cpf.min' => 'CPF inválido',
             'cpf.max' => 'CPF inválido',
+            'cpf.unique' => 'O CPF informado já existe na base de dados',
             'wpp.required' => 'Informe o WhatsApp do paciente',
             'wpp.min' => 'Número inválido',
             'wpp.max' => 'Número inválido',

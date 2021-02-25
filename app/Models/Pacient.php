@@ -11,5 +11,5 @@ class Pacient extends Model
 
     protected $table = 'pacients';
 
-    protected $fillable = ['name', 'year', 'cpf', 'wpp', 'image'];
+    protected $fillable = ['name', 'year', 'cpf', 'wpp', 'image', 'diagnostic'];
 }
