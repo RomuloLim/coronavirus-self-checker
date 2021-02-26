@@ -25,7 +25,6 @@ class StoreUpdatePacient extends FormRequest
     public function rules()
     {
         $id = $this->segment(2);
-
         $rules = [
             'name' => ['required', 'min:10', 'max:250'],
             'year' => ['required'],
@@ -33,6 +32,8 @@ class StoreUpdatePacient extends FormRequest
                 'required',
                 'min:14',
                 'max:14',
+                'cpf',
+                'formato_cpf',
                 Rule::unique('pacients')->ignore($id),
             ],
             'wpp' => ['required', 'min:14', 'max:15'],
