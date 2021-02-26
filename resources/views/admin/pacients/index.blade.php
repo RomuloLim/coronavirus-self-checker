@@ -76,5 +76,4 @@
     {{ $pacients->links() }}
 @endif
  </div>
-
 @endsection

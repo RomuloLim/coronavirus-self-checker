@@ -24,10 +24,10 @@
 
 <div class="col-md-6">
     <label for="name" class="form-label">CPF</label>
-    <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" value="{{ $pacient->cpf ?? old('cpf')}}">
+    <input class="form-control" type="text" name="cpf" id="cpf" placeholder="000.000.000-00" data-mask="000.000.000-00" value="{{ $pacient->cpf ?? old('cpf')}}">
 </div>
 
 <div class="col-md-12">
     <label for="name" class="form-label">WhatsApp</label>
-    <input class="form-control" type="text" name="wpp" id="wpp" placeholder="WhatsApp" value="{{ $pacient->wpp ??old('wpp') }}">
+    <input class="form-control" type="text" name="wpp" id="wpp" placeholder="(00) 00000-0000" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" value="{{ $pacient->wpp ??old('wpp') }}">
 </div>

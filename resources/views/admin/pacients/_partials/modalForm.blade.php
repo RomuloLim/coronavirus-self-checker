@@ -37,12 +37,12 @@
                         </div>
                         <div class="col-md-12 mt-3">
                             <label for="name" class="form-label">CPF</label>
-                            <input required class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" value="{{ old('cpf')}}">
+                            <input required class="form-control" type="text" name="cpf" id="cpf" placeholder="000.000.000-00" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" value="{{ old('cpf')}}">
                         </div>
 
                         <div class="col-md-12 mt-3">
                             <label for="name" class="form-label">WhatsApp</label>
-                            <input required class="form-control" type="text" name="wpp" id="wpp" placeholder="WhatsApp" value="{{ old('wpp') }}">
+                            <input required class="form-control" type="text" name="wpp" id="wpp"placeholder="(00) 00000-0000" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" value="{{ old('wpp') }}">
                         </div>
                         <div class="col-md-6 mt-3">
                             <button type="submit" class="btn btn-primary">Enviar</button>
