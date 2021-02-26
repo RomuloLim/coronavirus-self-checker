@@ -13,7 +13,7 @@ class PacienteController extends Controller
 {
     public function index(){
 
-        $pacients = Pacient::latest()->paginate(5);
+        $pacients = Pacient::latest()->simplePaginate(5);
 
         return view('admin.pacients.index', compact('pacients'));
     }
@@ -66,8 +66,9 @@ class PacienteController extends Controller
         if(!$pacient = Pacient::find($id)){
             return redirect()->back();
         }
+        $diagnostic = Diagnostic::where('pacient_id', $id)->get()->first();
 
-        return view('admin.pacients.update', compact('pacient'));
+        return view('admin.pacients.update', compact('pacient','diagnostic'));
     }
 
     public function update(StoreUpdatePacient $request, $id){
@@ -82,18 +83,42 @@ class PacienteController extends Controller
             $img = $request->image->store('pacients');
             $data['image'] = $img;
         }
+        if($pacient['diagnostic'] == "---"){
+            $pacient->update($data);
+            return redirect()
+            ->route('pacients.index')
+            ->with('message', 'Paciente editado com sucesso!');
+        }else{
+            $diagnostic = Diagnostic::where('pacient_id', $id)->get()->first();
+            $pacientStatus = ((count($request->all()) - 6) * 100) / 14;
+            $data['diagnostic'] = Diagnostic::calcDiag($pacientStatus);
 
-        $pacient->update($data);
+            //obter checkbox que não está marcado
+            $checks = array('febre','coriza','nariz_ent','cansaco', 'tosse',
+            'dor_cab', 'dor_corpo', 'mal_estar', 'dor_garganta', 'dif_respirar',
+            'falta_paladar', 'falta_olfato', 'dif_loc', 'diarreia');
 
-        return redirect()
-        ->route('pacients.index')
-        ->with('message', 'Paciente editado com sucesso!');
+            foreach ($checks as $check){
+                if(!$request->has($check)){
+                    $request[$check] = '0';
+                }
+            }
+
+            $pacient->update($data);
+
+            $diagnostic->update($request->all());
+
+            return redirect()
+            ->route('pacients.index')
+            ->with('message', 'Paciente editado com sucesso!');
+        }
     }
 
     public function search(Request $request){
         $filters = $request->except('_token');
         $pacients = Pacient::where('name', 'LIKE', "%{$request->search}%")
                             ->orWhere('cpf', 'LIKE', "%{$request->search}%")
+                            ->orWhere('diagnostic', 'LIKE', "%{$request->search}%")
                             ->paginate(5);
 
         return view('admin.pacients.index', compact('pacients', 'filters'));

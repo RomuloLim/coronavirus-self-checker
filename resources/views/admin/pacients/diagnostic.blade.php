@@ -5,7 +5,8 @@
 <h1 class="text-center mt-4">Diagnosticar paciente {{ $pacient->name }}</h1>
 <form action="{{ route('diagnostic.store', $pacient->id) }}" method="post" class="row mb-5 mt-4">
     @csrf
-    <div class="list-group col-3">
+<div class="row">
+    <div class="list-group col-sm justify-content-center">
         <label class="list-group-item">
             <input class="form-check-input me-1" name="febre" type="checkbox" value="1">
             Febre
@@ -23,7 +24,7 @@
             Cansaço
         </label>
     </div>
-    <div class="list-group col-3">
+    <div class="list-group col-sm">
     <label class="list-group-item">
         <input class="form-check-input me-1" name="tosse" type="checkbox" value="1">
         Tosse
@@ -41,7 +42,7 @@
         Mal estar geral
     </label>
     </div>
-    <div class="list-group col-3">
+    <div class="list-group col-sm">
     <label class="list-group-item">
         <input class="form-check-input me-1" name="dor_garganta" type="checkbox" value="1">
         Dor de garganta
@@ -59,7 +60,7 @@
         Falta de olfato
     </label>
     </div>
-    <div class="list-group col-3">
+    <div class="list-group col-sm">
         <label class="list-group-item">
             <input class="form-check-input me-1" name="dif_loc" type="checkbox" value="1">
             Dificuldade de locomoção
@@ -69,6 +70,12 @@
             Diarréia
         </label>
     </div>
-<button type="submit" class="btn btn-lg btn-success col-lg-1 mt-3">Enviar</button>
+</div>
+<div class="col-sm-10 mt-3">
+    <button type="submit" class="btn btn-lg btn-success">Enviar</button>
+</div>
+<div class="col-sm-auto d-flex  mt-3 float-start">
+    <a href="{{ route('pacients.index') }}" type="submit" class="btn btn-lg btn-primary">Voltar</a>
+</div>
 </form>
 @endsection

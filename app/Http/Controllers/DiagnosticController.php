@@ -12,15 +12,9 @@ class DiagnosticController extends Controller
         $pacient = Pacient::where('id', $id)->get()->first();
 
         $pacientStatus = ((count($request->all()) - 1) * 100) / 14;
-        if($pacientStatus <= 10){
-            Pacient::where('id', $pacient->id)->update(['diagnostic' => "SINTOMAS INSUFICIENTES"]);
-        }elseif($pacientStatus >= 40 && $pacientStatus < 60 ){
-            Pacient::where('id', $pacient->id)->update(['diagnostic' => "POTENCIAL INFECTADO"]);
-        }else{
-            Pacient::where('id', $pacient->id)->update(['diagnostic' => "POSSÍVEL INFECTADO"]);
-        }
-
+        $diag = Diagnostic::calcDiag($pacientStatus);
         $request['pacient_id'] = $id;
+        Pacient::where('id', $pacient->id)->update(['diagnostic' => $diag]);
         Diagnostic::create($request->all());
         return redirect()
         ->route('pacients.index')

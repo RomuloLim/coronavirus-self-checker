@@ -31,11 +31,3 @@
     <label for="name" class="form-label">WhatsApp</label>
     <input class="form-control" type="text" name="wpp" id="wpp" placeholder="WhatsApp" value="{{ $pacient->wpp ??old('wpp') }}">
 </div>
-
-<div class="col-md-6">
-    <button type="submit" class="btn btn-lg btn-primary">Enviar</button>
-</div>
-
-<div class="col-md-6 d-flex justify-content-end">
-    <a href="{{ route('pacients.index') }}" type="submit" class="btn btn-lg btn-primary">Voltar para o início</a>
-</div>
