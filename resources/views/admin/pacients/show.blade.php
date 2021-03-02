@@ -105,6 +105,6 @@
     </div>
 </form>
 @endif
-<a href="route('pacients.index')" class="btn btn-lg btn-primary col-1 mb-4">Voltar</a>
+<a href="{{ route('pacients.index')}} " class="btn btn-lg btn-primary col-1 mb-4">Voltar</a>
 
 @endsection

@@ -18,10 +18,6 @@ class PacienteController extends Controller
         return view('admin.pacients.index', compact('pacients'));
     }
 
-    public function create(){
-        return view('admin.pacients.create');
-    }
-
     public function store(StoreUpdatePacient $request){
         $data = $request->all();
         if($request->image->isValid()){

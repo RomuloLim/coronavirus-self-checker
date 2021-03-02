@@ -3,10 +3,11 @@
 @section('title', 'Atualizando paciente')
 
 @section('content')
-<h1>Editar paciente <u>{{ $pacient->name }}</u></h1>
+<h1 class="text-center mt-4 mb-4">Editar paciente <u>{{ $pacient->name }}</u></h1>
 <form action="{{ route('pacients.update', $pacient->id) }}" class="row g-3" method="post" enctype="multipart/form-data">
     @method('put')
     @include('admin.pacients._partials.form')
+
    @if (isset($diagnostic))
    <h1 class="text-center">Detalhes do diagnóstico</h1>
    <div class="row mt-5">
