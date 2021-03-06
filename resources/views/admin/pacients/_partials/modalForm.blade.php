@@ -1,4 +1,4 @@
-@if ($errors->any())
+{{-- @if ($errors->any())
     <ul>
         <div class="alert alert-danger mt-3">
             <ul>
@@ -9,7 +9,9 @@
 
         </div>
     </ul>
-@endif
+@endif --}}
+<div id="validation-errors"></div>
+<div id="validation-success"></div>
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -19,7 +21,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ route('pacients.store') }}" class="row g-3" method="post" enctype="multipart/form-data">
+            <form name="createForm" class="row g-3" enctype="multipart/form-data">
                @csrf
                 <div class="container-fluid">
                     <div class="row">
@@ -54,3 +56,42 @@
       </div>
     </div>
   </div>
+
+  @push('javascript')
+  <script>
+     $(document).ready(function($){
+     $('#wpp').mask('(00) 00000-0000');
+     $('#cpf').mask('000.000.000-00');
+ });
+
+    $(function(){
+        $('form[name="createForm"]').submit(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "{{ route('pacients.store') }}",
+                type: 'POST',
+                // data: $(this).serialize(),
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: 'json',
+                success: function (data){
+                    $('#validation-success').append('<div class="alert alert-success mt-3">'+data.success+' </div').delay( 2000 ).fadeOut( 400 );
+                    jQuery('#modal').modal('hide');
+                },
+                error: function (xhr) {
+                    $('#validation-errors').html('');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('<div class="alert alert-danger mt-3">'+value+'</div').delay( 2000 ).fadeOut( 400 );
+                    });
+                    jQuery('#modal').modal('hide');
+                 },
+            }).done(function(data){ //done em vez de load
+                console.log(data);
+               $("#reload").load("{{ route('pacients.index') }} #line"); //atribuir o conteúdo do div com a função html()
+    });
+        });
+    });
+ </script>
+  @endpush

@@ -19,7 +19,7 @@
         <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
         </div>
     </form>
-    <div class="table-responsive">
+    <div class="table-responsive" id="pacientsList">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -31,11 +31,11 @@
                   <th colspan="4">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="reload">
                 @php $cont = 1; @endphp
                 @foreach ($pacients as $pacient)
-                <tr style="vertical-align: middle">
-                    <th scope="row">{{ $cont++ }}</th>
+                <tr style="vertical-align: middle" id="line">
+                    <td scope="row">{{ $cont++ }}</td>
                     <td><img src="{{ url("storage/{$pacient->image}") }}" style="height:80px;width:80px;border-radius:100%;"></td>
                     <td>{{ $pacient->name }}</td>
                     <td>

@@ -21,16 +21,19 @@ class PacienteController extends Controller
     public function store(StoreUpdatePacient $request){
         $data = $request->all();
         if($request->image->isValid()){
-
             $img = $request->image->store('pacients');
             $data['image'] = $img;
         }
 
+        $cad['sucess'] = true;
+        $cad['message'] = 'Paciente criado com sucesso';
         $pacient = Pacient::create($data);
 
-        return redirect()
-        ->route('pacients.index')
-        ->with('message', 'Paciente criado com sucesso');
+        return response()->json(['success' => 'Paciente adicionado com sucesso']);
+
+        // return redirect()
+        // ->route('pacients.index')
+        // ->with('message', 'Paciente criado com sucesso');
     }
 
     public function show($id){
