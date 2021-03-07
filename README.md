@@ -1,62 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1 align="center">
+    <img src="https://vtdigger.org/wp-content/uploads/2020/05/covid-testing-288x288-ac1d37e5-b8e5-403f-b134-2a20a7c36763.png" width="100">
+    
+    Coronavirus self-checker
+</h1>
+
+<h3 align="center">
+An interactive assessment tool to help you
+</h3>
+
+<p>❗ This project was developed for learning only (Laravel CRUD with AJAX) and is NOT a substitute for clinical examinations and medical appointments ❗</p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img alt="PHP version" src="https://img.shields.io/badge/php-v8.0.2-blue">
+   
+  <img alt = "Laravel version" src = "https://img.shields.io/badge/laravel-v8.28.1-blue">
+
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-red">
+    
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+
+  <a href="https://www.linkedin.com/in/r%C3%B4mulo-lima-fonseca-1875351a0">
+    <img alt="made by Rômulo Lima" src="https://img.shields.io/badge/made by-Rômulo Lima-orange">
+  </a>
 </p>
 
-## About Laravel
+## About
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is a tool capable of measuring the probability of infection by COVID-19 based on the symptoms presented by registered patients. Developed for educational purposes on the programming tools used in development. This project has a CRUD with Laravel and AJAX and MySQL relating tables, have fun 😁.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+- [x] Any user can register in the system without the need for login by sending the following data::
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  - [x] An image of the patient
+  - [x] Full name
+  - [x] birth date
+  - [x] Valid CPF
+  - [x] WhatsApp number
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+After that, the user will be able to fill out a list of the symptoms presented and, based on that, receive his diagnosis.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Pre-requisites
 
-### Premium Partners
+Before you begin, you will need to have the following tools installed on your machine:
+[Git] (https://git-scm.com), [xampp] (https://www.apachefriends.org/pt_br/index.html) and [composer] (https://getcomposer.org/)
+In addition, it is good to have an editor to work with the code like [VSCode] (https://code.visualstudio.com/)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+#### Start project
 
-## Contributing
+```bash
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Clone this repository
+$ git clone https://github.com/RomuloLim/coronavirus-self-checker
 
-## Code of Conduct
+# Access the project folder cmd/terminal
+$ cd coronavirus-self-checker
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# install the dependencies
+$ composer install
 
-## Security Vulnerabilities
+# Run the application in development mode
+$ php artisan serve
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Starting Laravel development server: http://127.0.0.1:8000
+
+```
+
+---
+
+## Tech Stack
+
+Most of the tools used came pre-configured with Laravel (eloquent ORM, CORS, laramix, etc.), except
+
+> See the file [composer.json](https://github.com/RomuloLim/coronavirus-self-checker/blob/master/composer.json)
+
+#### **Utils**
+
+- Editor: **[Visual Studio Code](https://code.visualstudio.com/)** → Extensions: **[PHP IntelliSense](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-intellisense)**
+
+---
+
+## How to contribute
+
+1. Fork the project.
+2. Create a new branch with your changes: `git checkout -b my-feature`
+3. Save your changes and create a commit message telling you what you did: `git commit -m "feature: My new feature"`
+4. Submit your changes: `git push origin my-feature`
+
+---
+
+## Author
+
+<a href="https://www.linkedin.com/in/ives-moreira-8871b318a/">
+ <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQERhK2okW8U5w/profile-displayphoto-shrink_200_200/0/1579482490157?e=1619049600&v=beta&t=82Bki7tF3VrrKvaGITDP_pTe_IEGaOKehUDA8dnI8F8" width="100px;" alt="Ives Moreira"/>
+ <br />
+ <sub><b>Rômulo Lima</b></sub></a> <a href="https://www.linkedin.com/in/r%C3%B4mulo-lima-fonseca-1875351a0" title="Linkedin"></a>
+ <br />
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is under the license [MIT](./LICENSE).
+
+Made with 💜 by Romulo Lima.
