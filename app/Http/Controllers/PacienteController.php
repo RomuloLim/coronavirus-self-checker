@@ -11,16 +11,18 @@ use Illuminate\Support\Facades\Storage;
 
 class PacienteController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $pacients = Pacient::latest()->simplePaginate(5);
 
         return view('admin.pacients.index', compact('pacients'));
     }
 
-    public function store(StoreUpdatePacient $request){
+    public function store(StoreUpdatePacient $request)
+    {
         $data = $request->all();
-        if($request->image->isValid()){
+        if ($request->image->isValid()) {
             $img = $request->image->store('pacients');
             $data['image'] = $img;
         }
@@ -36,9 +38,10 @@ class PacienteController extends Controller
         // ->with('message', 'Paciente criado com sucesso');
     }
 
-    public function show($id){
+    public function show($id)
+    {
 
-        if(!$pacient = Pacient::find($id)){
+        if (!$pacient = Pacient::find($id)) {
             return redirect()->route('pacients.index');
         }
 
@@ -46,59 +49,65 @@ class PacienteController extends Controller
         return view('admin.pacients.show', compact('pacient', 'diagnostic'));
     }
 
-    public function destroy($id){
-        if(!$pacient = Pacient::find($id)){
+    public function destroy($id)
+    {
+        if (!$pacient = Pacient::find($id)) {
             return redirect()->route('pacients.index');
         }
 
-        if(Storage::exists($pacient->image))
+        if (Storage::exists($pacient->image))
             Storage::delete($pacient->image);
 
         $pacient->delete();
 
-        return redirect()
-        ->route('pacients.index')
-        ->with('message', 'Paciente deletado com sucesso');
+        return response()->json(['success' => 'Paciente deletado com sucesso']);
+        // return redirect()
+        // ->route('pacients.index')
+        // ->with('message', 'Paciente deletado com sucesso');
     }
 
-    public function edit($id){
-        if(!$pacient = Pacient::find($id)){
+    public function edit($id)
+    {
+        if (!$pacient = Pacient::find($id)) {
             return redirect()->back();
         }
         $diagnostic = Diagnostic::where('pacient_id', $id)->get()->first();
 
-        return view('admin.pacients.update', compact('pacient','diagnostic'));
+        return view('admin.pacients.update', compact('pacient', 'diagnostic'));
     }
 
-    public function update(StoreUpdatePacient $request, $id){
-        if(!$pacient = Pacient::find($id)){
+    public function update(StoreUpdatePacient $request, $id)
+    {
+        if (!$pacient = Pacient::find($id)) {
             return redirect()->back();
         }
 
         $data = $request->all();
-        if($request->image && $request->image->isValid()){
-            if(Storage::exists($pacient->image))
-                 Storage::delete($pacient->image);
+        if ($request->image && $request->image->isValid()) {
+            if (Storage::exists($pacient->image))
+                Storage::delete($pacient->image);
             $img = $request->image->store('pacients');
             $data['image'] = $img;
         }
-        if($pacient['diagnostic'] == "---"){
+        if ($pacient['diagnostic'] == "---") {
             $pacient->update($data);
             return redirect()
-            ->route('pacients.index')
-            ->with('message', 'Paciente editado com sucesso!');
-        }else{
+                ->route('pacients.index')
+                ->with('message', 'Paciente editado com sucesso!');
+        } else {
             $diagnostic = Diagnostic::where('pacient_id', $id)->get()->first();
             $pacientStatus = ((count($request->all()) - 6) * 100) / 14;
             $data['diagnostic'] = Diagnostic::calcDiag($pacientStatus);
 
             //obter checkbox que não está marcado
-            $checks = array('febre','coriza','nariz_ent','cansaco', 'tosse',
-            'dor_cab', 'dor_corpo', 'mal_estar', 'dor_garganta', 'dif_respirar',
-            'falta_paladar', 'falta_olfato', 'dif_loc', 'diarreia');
+            $checks = array(
+                'febre', 'coriza', 'nariz_ent', 'cansaco', 'tosse',
+                'dor_cab', 'dor_corpo', 'mal_estar', 'dor_garganta', 'dif_respirar',
+                'falta_paladar', 'falta_olfato', 'dif_loc', 'diarreia'
+            );
 
-            foreach ($checks as $check){
-                if(!$request->has($check)){
+            foreach ($checks as $check) {
+                if (!$request->has($check)) {
                     $request[$check] = '0';
                 }
             }
@@ -108,23 +117,25 @@ class PacienteController extends Controller
             $diagnostic->update($request->all());
 
             return redirect()
-            ->route('pacients.index')
-            ->with('message', 'Paciente editado com sucesso!');
+                ->route('pacients.index')
+                ->with('message', 'Paciente editado com sucesso!');
         }
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $filters = $request->except('_token');
         $pacients = Pacient::where('name', 'LIKE', "%{$request->search}%")
-                            ->orWhere('cpf', 'LIKE', "%{$request->search}%")
-                            ->orWhere('diagnostic', 'LIKE', "%{$request->search}%")
-                            ->paginate(5);
+            ->orWhere('cpf', 'LIKE', "%{$request->search}%")
+            ->orWhere('diagnostic', 'LIKE', "%{$request->search}%")
+            ->paginate(5);
 
         return view('admin.pacients.index', compact('pacients', 'filters'));
     }
 
-    public function createDiagnostic($id){
-        if(!$pacient = Pacient::find($id)){
+    public function createDiagnostic($id)
+    {
+        if (!$pacient = Pacient::find($id)) {
             return redirect()->back();
         }
         return view('admin.pacients.diagnostic', compact('pacient'));
