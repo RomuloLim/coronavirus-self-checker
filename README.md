@@ -63,7 +63,19 @@ $ cd coronavirus-self-checker
 # install the dependencies
 $ composer install
 
-# Run the application in development mode
+# Prepare .env and generate the application key
+$ cp .env.example .env
+$ php artisan key:generate
+
+# Configure the database on .env according to your machine (preferably MySQL)
+DB_DATABASE=yourDatabase
+DB_USERNAME=yourDatabaseUser
+DB_PASSWORD=yourPass
+
+# Run migrations
+$ php artisan migrate --seed
+
+# Run the application
 $ php artisan serve
 
 # Starting Laravel development server: http://127.0.0.1:8000
