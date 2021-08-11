@@ -107,7 +107,7 @@ Most of the tools used came pre-configured with Laravel (eloquent ORM, CORS, lar
 
 ## Author
 
- <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQERhK2okW8U5w/profile-displayphoto-shrink_200_200/0/1579482490157?e=1619049600&v=beta&t=82Bki7tF3VrrKvaGITDP_pTe_IEGaOKehUDA8dnI8F8" width="100px;" alt="Rômulo Lima"/>
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/37809622?v=4" width="100px;" alt="Rômulo Lima"/>
  <br />
  <sub><b>Rômulo Lima</b></sub></a> <a href="https://www.linkedin.com/in/r%C3%B4mulo-lima-fonseca-1875351a0" title="Linkedin"></a>
  <br />
