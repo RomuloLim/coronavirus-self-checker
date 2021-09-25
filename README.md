@@ -1,9 +1,11 @@
-#test
+## Teste
+
 <h1 align="center">
     <img src="https://vtdigger.org/wp-content/uploads/2020/05/covid-testing-288x288-ac1d37e5-b8e5-403f-b134-2a20a7c36763.png" width="100">
     
     Coronavirus self-checker
 </h1>
+
 
 <h3 align="center">
 An interactive assessment tool to help you
