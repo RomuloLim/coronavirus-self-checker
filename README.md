@@ -76,6 +76,9 @@ DB_PASSWORD=yourPass
 # Run migrations
 $ php artisan migrate --seed
 
+# Storage link
+$ php artisan storage:link
+
 # Run the application
 $ php artisan serve
 

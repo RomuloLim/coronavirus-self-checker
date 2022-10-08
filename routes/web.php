@@ -18,6 +18,4 @@ Route::post('/diagnostic/{id}', [DiagnosticController::class, 'store'])->name('d
 Route::get('/diagnostic/{id}', [PacienteController::class, 'createDiagnostic'])->name('diagnostic.create');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PacienteController::class, 'index']);
